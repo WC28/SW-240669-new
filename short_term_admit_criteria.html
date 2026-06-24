@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แนวทางการเพิ่มอัตราการครองเตียง · JVK</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal-dark:  #0F6E56;
+    --teal-mid:   #1D9E75;
+    --teal-light: #9FE1CB;
+    --teal-pale:  #E1F5EE;
+    --amber:      #BA7517;
+    --amber-pale: #FAEEDA;
+    --purple:     #534AB7;
+    --purple-pale:#EEEDFE;
+    --ink:        #1A2220;
+    --ink-mid:    #3B4A45;
+    --ink-light:  #7A8E88;
+    --border:     #D0E8DF;
+    --white:      #FFFFFF;
+    --page-bg:    #F5FBF8;
+  }
+
+  body {
+    font-family: 'Sarabun', sans-serif;
+    background: var(--page-bg);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 860px;
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 24px rgba(15,110,86,0.08);
+  }
+
+  /* ── Header ── */
+  .header {
+    background: var(--teal-dark);
+    padding: 32px 40px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .header-tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 10px;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.35;
+    max-width: 600px;
+  }
+  .header-meta {
+    margin-top: 14px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .header-meta span {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
+  .header-meta strong {
+    color: var(--teal-light);
+    font-weight: 500;
+  }
+
+  /* ── Objective banner ── */
+  .objective {
+    background: var(--teal-pale);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .obj-icon {
+    width: 36px; height: 36px;
+    background: var(--teal-mid);
+    border-radius: 8px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .obj-icon svg { width: 18px; height: 18px; fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; }
+  .objective p {
+    font-size: 14px;
+    color: var(--teal-dark);
+    line-height: 1.6;
+  }
+  .objective strong { font-weight: 600; }
+
+  /* ── Body ── */
+  .body { padding: 32px 40px; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    margin-bottom: 16px;
+  }
+
+  /* ── Criteria cards ── */
+  .criteria-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .criteria-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .criteria-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--teal-mid);
+    border-radius: 3px 0 0 3px;
+  }
+  .criteria-card .num {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--teal-mid);
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .criteria-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .criteria-card p {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+  }
+
+  /* Special card: full width for family criteria */
+  .criteria-card.full {
+    grid-column: 1 / -1;
+    background: var(--purple-pale);
+    border-color: #CECBF6;
+  }
+  .criteria-card.full::before { background: var(--purple); }
+  .criteria-card.full .num { color: var(--purple); }
+
+  /* ── Case flow ── */
+  .flow-section {
+    margin-bottom: 28px;
+  }
+  .flow-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .flow-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .flow-card .case-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--teal-pale);
+    color: var(--teal-dark);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .flow-card.case2 .case-tag {
+    background: var(--purple-pale);
+    color: var(--purple);
+  }
+  .flow-card h3 {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .flow-steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .flow-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+  .flow-steps li::before {
+    content: '→';
+    color: var(--teal-mid);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .flow-card.case2 .flow-steps li::before {
+    color: var(--purple);
+  }
+
+  /* ── Role table ── */
+  .roles-section { margin-bottom: 28px; }
+  .role-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .role-table th {
+    background: var(--teal-dark);
+    color: white;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-align: left;
+    padding: 10px 16px;
+  }
+  .role-table th:first-child { border-radius: 8px 0 0 0; }
+  .role-table th:last-child  { border-radius: 0 8px 0 0; }
+  .role-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink-mid);
+    vertical-align: top;
+    line-height: 1.55;
+  }
+  .role-table tr:last-child td { border-bottom: none; }
+  .role-table tr:nth-child(even) td { background: var(--teal-pale); }
+  .role-tag {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--teal-dark);
+    font-size: 13px;
+  }
+  .role-tag.sw { color: var(--purple); }
+
+  /* ── Key message ── */
+  .key-message {
+    background: var(--amber-pale);
+    border: 1px solid #F5C36A;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .key-message .icon {
+    width: 32px; height: 32px;
+    background: var(--amber);
+    border-radius: 8px;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .key-message .icon svg { width: 16px; height: 16px; fill: none; stroke: white; stroke-width: 2.2; stroke-linecap: round; }
+  .key-message p { font-size: 13.5px; color: var(--ink); line-height: 1.65; }
+  .key-message strong { color: var(--amber); font-weight: 600; }
+
+  /* ── Footer ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer-left { font-size: 12px; color: var(--ink-light); }
+  .footer-right {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--teal-pale);
+    color: var(--teal-dark);
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 24px 20px 20px; }
+    .body { padding: 24px 20px; }
+    .objective { padding: 14px 20px; }
+    .footer { padding: 14px 20px; }
+    .criteria-grid, .flow-row { grid-template-columns: 1fr; }
+    .criteria-card.full { grid-column: 1; }
+    .header h1 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-tag">โรงพยาบาลนครราชสีมาราชนครินทร์ · กลุ่มงานสังคมสงเคราะห์</div>
+    <h1>แนวทางการเพิ่มอัตราการครองเตียง<br>ด้วยระบบ Short-term Admission</h1>
+    <div class="header-meta">
+      <span>ระยะเวลาการรับไว้รักษา <strong>๗ วัน</strong></span>
+      <span>เสนอต่อ <strong>ที่ประชุมสหวิชาชีพ</strong></span>
+    </div>
+  </div>
+
+  <!-- Objective -->
+  <div class="objective">
+    <div class="obj-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+    </div>
+    <p><strong>วัตถุประสงค์:</strong> เพิ่มการรับผู้ป่วยในกลุ่ม Short-term Admission เพื่อยกระดับอัตราการครองเตียง โดยกำหนดเกณฑ์ที่ชัดเจนและลดขั้นตอนซ้ำซ้อน ให้แต่ละวิชาชีพรับผิดชอบในบทบาทที่เหมาะสม</p>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <!-- Criteria -->
+    <div class="section-label">เกณฑ์การรับผู้ป่วยแบบ Short-term Admission (๗ วัน)</div>
+    <div class="criteria-grid">
+
+      <div class="criteria-card">
+        <div class="num">เกณฑ์ที่ ๑</div>
+        <h3>ไม่มีภาวะแทรกซ้อนทางกาย</h3>
+        <p>ผ่านเกณฑ์การคัดกรองภาวะแทรกซ้อนทางกายของโรงพยาบาล ตามแนวทางที่กำหนด</p>
+      </div>
+
+      <div class="criteria-card full">
+        <div class="num">เกณฑ์ที่ ๒</div>
+        <h3>ญาติมีความพร้อมรับกลับ</h3>
+        <p>
+          ญาติพร้อมมารับด้วยตนเอง <strong>หรือ</strong> กรณีญาติ<em>ไม่สะดวกเดินทาง</em>: ญาติเซ็นยินยอมให้นักสังคมสงเคราะห์พิจารณาส่งกลับ และสนับสนุนค่าใช้จ่ายในการเดินทาง
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Flow by case -->
+    <div class="flow-section">
+      <div class="section-label">กระบวนการ แยกตามกรณี</div>
+      <div class="flow-row">
+
+        <div class="flow-card">
+          <div class="case-tag">กรณีที่ ๑</div>
+          <h3>ญาติมารับตามวันนัด</h3>
+          <ul class="flow-steps">
+            <li>แพทย์ทำข้อตกลงวันจำหน่ายกับญาติ</li>
+            <li>พยาบาลรับใหม่ให้ข้อมูลและเซ็นยินยอม</li>
+            <li>ญาติมารับกลับตามนัด</li>
+            <li>ไม่จำเป็นต้องประสานนักสังคมฯ</li>
+          </ul>
+        </div>
+
+        <div class="flow-card case2">
+          <div class="case-tag">กรณีที่ ๒</div>
+          <h3>ญาติไม่สะดวกมารับ</h3>
+          <ul class="flow-steps">
+            <li>ญาติแจ้งตั้งแต่วันรับใหม่ + ฝากค่าเดินทาง</li>
+            <li>แพทย์แจ้งวอร์ด → วอร์ดประสานนักสังคมฯ</li>
+            <li>นักสังคมฯ ประเมินและดำเนินการส่งกลับ</li>
+            <li>ใช้เงินที่ญาติสนับสนุนไว้</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Role table -->
+    <div class="roles-section">
+      <div class="section-label">บทบาทของแต่ละวิชาชีพ</div>
+      <table class="role-table">
+        <thead>
+          <tr>
+            <th style="width:28%">วิชาชีพ</th>
+            <th>บทบาทหน้าที่</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="role-tag">แพทย์</span></td>
+            <td>กำหนดแผนจำหน่าย ทำข้อตกลงกับญาติ แจ้งวันนัด และส่งต่อวอร์ดเมื่อมีการเปลี่ยนแปลง</td>
+          </tr>
+          <tr>
+            <td><span class="role-tag">พยาบาลรับใหม่</span></td>
+            <td>ซักประวัติ ให้ข้อมูลแนวทางส่งกลับ รับเซ็นยินยอม และรับฝากค่าใช้จ่ายจากญาติ (ไม่ต้องรอนักสังคมฯ)</td>
+          </tr>
+          <tr>
+            <td><span class="role-tag sw">นักสังคมสงเคราะห์</span></td>
+            <td>รับช่วงต่อเฉพาะกรณีที่ญาติไม่มาตามนัด หรือกรณีซับซ้อน ดำเนินการส่งกลับและติดตามญาติตามกระบวนการ</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Key message -->
+    <div class="key-message">
+      <div class="icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+      </div>
+      <p>
+        <strong>จุดสำคัญ:</strong> พยาบาลรับใหม่ดำเนินการได้ทันที ทั้งในและนอกเวลาราชการ — ไม่ต้องรอนักสังคมสงเคราะห์ เพราะการยินยอมส่งกลับอยู่ในใบยินยอมรับการรักษาอยู่แล้ว นักสังคมฯ จะรับช่วงเฉพาะกรณีที่ต้องการการประเมินและการส่งกลับที่ซับซ้อนเท่านั้น
+      </p>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-left">กลุ่มงานสังคมสงเคราะห์ · โรงพยาบาลนครราชสีมาราชนครินทร์ · เขตสุขภาพที่ ๙</div>
+    <div class="footer-right">
+      <span class="badge">Short-term Admission</span>
+      <span class="badge">๗ วัน</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
